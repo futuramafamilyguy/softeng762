@@ -241,7 +241,7 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <If Condition="[row.Item(&quot;Overall course grade&quot;).ToString = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If Condition="[row.Item(&quot;Overall course grade&quot;).ToString = &quot;&quot;]" DisplayName="If course grade is empty" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_2">
                           <If.Then>
                             <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
                               <Assign.To>
@@ -253,7 +253,7 @@
                             </Assign>
                           </If.Then>
                         </If>
-                        <If Condition="[row.Item(&quot;Assignment on time percent&quot;).ToString = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_3">
+                        <If Condition="[row.Item(&quot;Assignment on time percent&quot;).ToString = &quot;&quot;]" DisplayName="If assignment on time is empty" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_3">
                           <If.Then>
                             <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_7">
                               <Assign.To>
