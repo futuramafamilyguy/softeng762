@@ -104,6 +104,15 @@
         "C:\\Users\\Frank\\.nuget\\packages\\uipath.vision/2.0.1\\lib/net452/UiPath.Vision.Tesseract.dll",
         "C:\\Users\\Frank\\.nuget\\packages\\uipath.vision/2.0.1\\lib/net452/UiPath.Vision.dll"
       ]
+    },
+    {
+      "Package": {
+        "Id": "System.IO.Compression",
+        "Version": "4.3.0"
+      },
+      "Assemblies": [
+        "C:\\Users\\Frank\\.nuget\\packages\\system.io.compression/4.3.0\\lib/net46/System.IO.Compression.dll"
+      ]
     }
   ],
   "Conflicts": [],
@@ -201,6 +210,11 @@
     "SharpZipLib": {
       "Id": "SharpZipLib",
       "Version": "1.0.0",
+      "Dependencies": []
+    },
+    "System.IO.Compression": {
+      "Id": "System.IO.Compression",
+      "Version": "4.3.0",
       "Dependencies": []
     },
     "System.ValueTuple": {

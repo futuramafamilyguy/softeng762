@@ -3,6 +3,7 @@
   "description": "Downloads and exports student Canvas access data into readable format",
   "main": "Main.xaml",
   "dependencies": {
+    "System.IO.Compression": "[4.3.0]",
     "UiPath.Excel.Activities": "[2.7.2]",
     "UiPath.Mail.Activities": "[1.7.2]",
     "UiPath.System.Activities": "[19.10.1]",
@@ -29,7 +30,8 @@
     "libraryOptions": {
       "includeOriginalXaml": false,
       "privateWorkflows": []
-    }
+    },
+    "fileInfos": []
   },
   "expressionLanguage": "VisualBasic"
 }
