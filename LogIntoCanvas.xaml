@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>538,936</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>538,998</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>LogIntoCanvas_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -53,25 +53,25 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="LogIntoCanvas" sap:VirtualizedContainerService.HintSize="518,876" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="LogIntoCanvas" sap:VirtualizedContainerService.HintSize="518,938" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="476,784" sap2010:WorkflowViewState.IdRef="Sequence_8">
+    <Sequence DisplayName="Web" sap:VirtualizedContainerService.HintSize="476,846" sap2010:WorkflowViewState.IdRef="Sequence_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'TheUniver Page'" sap:VirtualizedContainerService.HintSize="434,692" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="6dbbbdce206ae2ac9a71b397dee92110" Selector="&lt;html app='chrome.exe' title='The University of Auckland Login Service' /&gt;">
+      <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'TheUniver Page'" sap:VirtualizedContainerService.HintSize="434,754" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="6dbbbdce206ae2ac9a71b397dee92110" Selector="&lt;html app='chrome.exe' title='The University of Auckland Login Service' /&gt;">
         <ui:BrowserScope.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,546" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,608" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -107,6 +107,7 @@
                   </ui:Target>
                 </ui:Click.Target>
               </ui:Click>
+              <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
             </Sequence>
           </ActivityAction>
         </ui:BrowserScope.Body>
