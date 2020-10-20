@@ -47,8 +47,8 @@
   <Sequence DisplayName="Extract Zipped Files" sap:VirtualizedContainerService.HintSize="504,949" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="files" />
-      <Variable x:TypeArguments="x:String" Default="G:\Coding Stuff\SE762\softeng762\Zipped\extracted" Name="extractPath" />
-      <Variable x:TypeArguments="x:String" Default="G:\Coding Stuff\SE762\softeng762\Zipped" Name="zippedFiles" />
+      <Variable x:TypeArguments="x:String" Default="E:\Uni\Softeng 762\Project\softeng762\Zipped\extracted" Name="extractPath" />
+      <Variable x:TypeArguments="x:String" Default="E:\Uni\Softeng 762\Project\softeng762\Zipped" Name="zippedFiles" />
       <Variable x:TypeArguments="x:Int32" Default="0" Name="fileCounter" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>

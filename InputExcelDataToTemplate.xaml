@@ -5,7 +5,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>638,1362</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>638,1862</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ImputExcelDataToTemplate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -30,6 +30,7 @@
       <x:String>UiPath.Core</x:String>
       <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -50,11 +51,13 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InputExcelDataToTemplate" sap:VirtualizedContainerService.HintSize="618,1302" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence DisplayName="InputExcelDataToTemplate" sap:VirtualizedContainerService.HintSize="618,1802" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="G:\Coding Stuff\SE762\softeng762\Template.xlsx" Name="templatePath" />
+      <Variable x:TypeArguments="x:String" Default="E:\Uni\Softeng 762\Project\softeng762\Template.xlsx" Name="templatePath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -104,22 +107,45 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="576,288" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[templatePath]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="576,788" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" WorkbookPath="[templatePath]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Writing To Template" sap:VirtualizedContainerService.HintSize="376,179" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="Writing To Template" sap:VirtualizedContainerService.HintSize="526,679" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Default="DataSheet" Name="sheet" />
               <Variable x:TypeArguments="x:String" Default="A2" Name="startingCell" />
+              <Variable x:TypeArguments="sd:DataTable" Name="tempDt" />
+              <Variable x:TypeArguments="x:String" Name="deleteRange" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:ExcelReadRange Range="{x:Null}" AddHeaders="True" DataTable="[tempDt]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" SheetName="[sheet]" />
+            <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[deleteRange]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[startingCell + ":" + Convert.ToChar(64 + tempDt.Columns.Count) + (tempDt.Rows.Count + 1).ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <If Condition="[tempDt.Rows.Count &gt; 1]" sap:VirtualizedContainerService.HintSize="484,261" sap2010:WorkflowViewState.IdRef="If_3">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ExcelDeleteRange DisplayName="Delete Range" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="ExcelDeleteRange_1" Range="[deleteRange]" SheetName="[sheet]" ShiftCells="False" ShiftOption="ShiftUp" />
+                </Sequence>
+              </If.Then>
+            </If>
             <ui:ExcelWriteRange AddHeaders="False" DataTable="[mergedDt]" DisplayName="Write Range" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelWriteRange_1" SheetName="[sheet]" StartingCell="[startingCell]" />
           </Sequence>
         </ActivityAction>
