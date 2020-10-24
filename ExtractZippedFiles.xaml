@@ -1,11 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ExtractZippedFiles" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sic="clr-namespace:System.IO.Compression;assembly=System.IO.Compression.FileSystem" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="zippedFiles" Type="InArgument(x:String)" />
+    <x:Property Name="extractPath" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>711,1389</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>711,1249</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ExtractZippedFiles_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,27 +52,19 @@
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Extract Zipped Files" sap:VirtualizedContainerService.HintSize="691,1289" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence DisplayName="Extract Zipped Files" sap:VirtualizedContainerService.HintSize="691,1189" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="files" />
-      <Variable x:TypeArguments="x:String" Name="extractPath" />
-      <Variable x:TypeArguments="x:Int32" Default="0" Name="fileCounter" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="649,60" sap2010:WorkflowViewState.IdRef="Assign_4">
-      <Assign.To>
-        <OutArgument x:TypeArguments="x:String">[extractPath]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[zippedFiles]</InArgument>
-      </Assign.Value>
-    </Assign>
     <Assign sap:VirtualizedContainerService.HintSize="649,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[files]</OutArgument>
@@ -107,6 +100,9 @@
             <If Condition="[zipPath.Contains(&quot;.zip&quot;)]" sap:VirtualizedContainerService.HintSize="571,671" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <Sequence sap:VirtualizedContainerService.HintSize="426,523" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="csvFileName" />
+                  </Sequence.Variables>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -121,15 +117,15 @@
                     <InArgument x:TypeArguments="x:String">[zipPath]</InArgument>
                     <InArgument x:TypeArguments="x:String">[extractPath]</InArgument>
                   </InvokeMethod>
-                  <ui:MoveFile ContinueOnError="{x:Null}" Destination="[extractPath + &quot;\students_&quot; + fileCounter.ToString + &quot;.csv&quot;]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="384,157" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[extractPath + &quot;\students.csv&quot;]" />
-                  <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign sap:VirtualizedContainerService.HintSize="384,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                     <Assign.To>
-                      <OutArgument x:TypeArguments="x:Int32">[fileCounter]</OutArgument>
+                      <OutArgument x:TypeArguments="x:String">[csvFileName]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
-                      <InArgument x:TypeArguments="x:Int32">[fileCounter + 1]</InArgument>
+                      <InArgument x:TypeArguments="x:String">[Path.GetFileNameWithoutExtension(zipPath)]</InArgument>
                     </Assign.Value>
                   </Assign>
+                  <ui:MoveFile ContinueOnError="{x:Null}" Destination="[extractPath + &quot;\&quot; + csvFileName + &quot;.csv&quot;]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="384,157" sap2010:WorkflowViewState.IdRef="MoveFile_1" Overwrite="False" Path="[extractPath + &quot;\students.csv&quot;]" />
                 </Sequence>
               </If.Then>
             </If>
