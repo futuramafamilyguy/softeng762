@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>624,748</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>624,686</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DeleteExcelFiles_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -53,10 +53,9 @@
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Delete Excel Files" sap:VirtualizedContainerService.HintSize="604,688" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Delete Excel Files" sap:VirtualizedContainerService.HintSize="604,626" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="files" />
     </Sequence.Variables>
@@ -65,7 +64,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Get all files in folder" sap:VirtualizedContainerService.HintSize="562,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[files]</OutArgument>
       </Assign.To>
@@ -85,7 +84,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[Not file.ToString.Contains(&quot;EngagementAnalyticsLite.xlsm&quot;)]" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[Not file.ToString.Contains(&quot;EngagementAnalyticsLite.xlsm&quot;)]" DisplayName="Do not delete the template file" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
                 <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[file.ToString]" />
               </If.Then>
@@ -94,6 +93,5 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="562,22" sap2010:WorkflowViewState.IdRef="Delete_2" Path="[extractedFiles]" />
   </Sequence>
 </Activity>
