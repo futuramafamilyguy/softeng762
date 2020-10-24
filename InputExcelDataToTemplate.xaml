@@ -57,7 +57,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="InputExcelDataToTemplate" sap:VirtualizedContainerService.HintSize="618,1802" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="E:\Uni\Softeng 762\Project\softeng762\Template.xlsx" Name="templatePath" />
+      <Variable x:TypeArguments="x:String" Default="G:\Coding Stuff\SE762\softeng762\Template.xlsx" Name="templatePath" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">

@@ -46,7 +46,7 @@
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Delete Excel Files" sap:VirtualizedContainerService.HintSize="242,114" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
-      <Variable x:TypeArguments="x:String" Default="E:\Uni\Softeng 762\Project\softeng762\Zipped\extracted" Name="excelFilePath" />
+      <Variable x:TypeArguments="x:String" Default="G:\Coding Stuff\SE762\softeng762\Zipped\extracted" Name="excelFilePath" />
       <Variable x:TypeArguments="s:String[]" Name="excelFiles" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
