@@ -1694,15 +1694,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\clayt\\.nuget\\packages\\": {}
+    "C:\\Users\\Yin Wang\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "CanvasDataExtract",
       "projectName": "CanvasDataExtract",
-      "projectPath": "C:\\Users\\clayt\\Desktop\\Uni\\SOFTENG762\\softeng762\\.local",
-      "packagesPath": "C:\\Users\\clayt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\clayt\\Desktop\\Uni\\SOFTENG762\\softeng762\\.local"
+      "projectPath": "C:\\Users\\Yin Wang\\Documents\\UiPath\\CanvasDataExtract\\.local",
+      "packagesPath": "C:\\Users\\Yin Wang\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Yin Wang\\Documents\\UiPath\\CanvasDataExtract\\.local"
     },
     "frameworks": {
       "net461": {
