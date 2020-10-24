@@ -1,11 +1,12 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="ex" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="mergedDt" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="excelFilePath" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>647,1101</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>834,1180</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ex_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -51,12 +52,13 @@
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ExtractingFromExcel" sap:VirtualizedContainerService.HintSize="627,1041" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <Sequence DisplayName="ExtractingFromExcel" sap:VirtualizedContainerService.HintSize="814,1120" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="excelFiles" />
-      <Variable x:TypeArguments="x:String" Default="G:\Coding Stuff\SE762\softeng762\Zipped\extracted" Name="excelFilePath" />
       <Variable x:TypeArguments="sd:DataTable" Name="tempDt" />
       <Variable x:TypeArguments="x:String" Name="dtText" />
     </Sequence.Variables>
@@ -65,7 +67,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="585,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Assign" sap:VirtualizedContainerService.HintSize="772,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[excelFiles]</OutArgument>
       </Assign.To>
@@ -73,40 +75,49 @@
         <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(excelFilePath)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="585,626" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[excelFiles]">
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="772,866" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[excelFiles]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="file" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="549,492" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="736,732" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[tempDt]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[file.ToString]" sap:VirtualizedContainerService.HintSize="507,152" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
-            <If Condition="[mergedDt Is Nothing]" sap:VirtualizedContainerService.HintSize="507,208" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[file.ToString.Contains(&quot;.csv&quot;)]" sap:VirtualizedContainerService.HintSize="694,640" sap2010:WorkflowViewState.IdRef="If_2">
               <If.Then>
-                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="sd:DataTable">[mergedDt]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="sd:DataTable">[tempDt]</InArgument>
-                  </Assign.Value>
-                </Assign>
+                <Sequence sap:VirtualizedContainerService.HintSize="549,492" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[tempDt]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[file.ToString]" sap:VirtualizedContainerService.HintSize="507,152" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
+                  <If Condition="[mergedDt Is Nothing]" sap:VirtualizedContainerService.HintSize="507,208" sap2010:WorkflowViewState.IdRef="If_1">
+                    <If.Then>
+                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="sd:DataTable">[mergedDt]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="sd:DataTable">[tempDt]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </If.Then>
+                    <If.Else>
+                      <ui:MergeDataTable Destination="[mergedDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[tempDt]" />
+                    </If.Else>
+                  </If>
+                </Sequence>
               </If.Then>
-              <If.Else>
-                <ui:MergeDataTable Destination="[mergedDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[tempDt]" />
-              </If.Else>
             </If>
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:SortDataTable ColumnName="{x:Null}" DataColumn="{x:Null}" ColumnIndex="[1]" DataTable="[mergedDt]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="585,22" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Ascending" OutputDataTable="[mergedDt]" SortOrder="Ascending" />
-    <ui:OutputDataTable DataTable="[mergedDt]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="585,22" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[dtText]" />
-    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="585,59" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[dtText]" />
+    <ui:SortDataTable ColumnName="{x:Null}" DataColumn="{x:Null}" ColumnIndex="[1]" DataTable="[mergedDt]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="772,22" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Ascending" OutputDataTable="[mergedDt]" SortOrder="Ascending" />
   </Sequence>
 </Activity>
