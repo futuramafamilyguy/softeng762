@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="734,1720" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="734,1760" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -122,13 +122,13 @@
               <av:PointCollection x:Key="ConnectorLocation">290,275.5 290,324.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[courses_dt]" DisplayName="Downloading Canvas data" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[courses_dt]" DisplayName="Downloading Canvas data" sap:VirtualizedContainerService.HintSize="776,1279" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
             <ui:ForEachRow.Body>
               <ActivityAction x:TypeArguments="sd:DataRow">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="sd:DataRow" Name="course" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="726,1659" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="726,1131" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="course_tab_title" />
                     <Variable x:TypeArguments="x:String" Name="status" />
@@ -138,9 +138,9 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If Condition="[Not course(&quot;status&quot;).Equals(&quot;OK&quot;)]" sap:VirtualizedContainerService.HintSize="684,1567" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If Condition="[Not course(&quot;status&quot;).Equals(&quot;OK&quot;)]" sap:VirtualizedContainerService.HintSize="684,1039" sap2010:WorkflowViewState.IdRef="If_1">
                     <If.Then>
-                      <Sequence sap:VirtualizedContainerService.HintSize="539,1419" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                      <Sequence sap:VirtualizedContainerService.HintSize="539,891" sap2010:WorkflowViewState.IdRef="Sequence_10">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -159,9 +159,9 @@
                           <While.Condition>
                             <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="(Not file_exists) And course_tab_title.Equals(&quot;New Analytics&quot;)" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
                           </While.Condition>
-                          <ui:PathExists DisplayName="Path Exists" Exists="[file_exists]" sap:VirtualizedContainerService.HintSize="334,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="C:\Users\Yin Wang\Documents\762test\course_grade.zip" PathType="File" />
+                          <ui:PathExists DisplayName="Path Exists" Exists="[file_exists]" sap:VirtualizedContainerService.HintSize="334,89" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[output_file_path + &quot;\course_grade.zip&quot;]" PathType="File" />
                         </While>
-                        <Switch x:TypeArguments="x:String" DisplayName="Check tab title " Expression="[course_tab_title]" sap:VirtualizedContainerService.HintSize="497,686" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                        <Switch x:TypeArguments="x:String" DisplayName="Check tab title " Expression="[course_tab_title]" sap:VirtualizedContainerService.HintSize="497,158" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                           <Switch.Default>
                             <Assign DisplayName="Assign status" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                               <Assign.To>
