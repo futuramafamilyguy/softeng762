@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>700,2514</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>700,2583</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ImputExcelDataToTemplate_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -61,7 +61,7 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="InputExcelDataToTemplate" sap:VirtualizedContainerService.HintSize="680,2454" sap2010:WorkflowViewState.IdRef="Sequence_4">
+  <Sequence DisplayName="InputExcelDataToTemplate" sap:VirtualizedContainerService.HintSize="680,2523" sap2010:WorkflowViewState.IdRef="Sequence_4">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="files" />
     </Sequence.Variables>
@@ -78,13 +78,13 @@
         <InArgument x:TypeArguments="s:String[]">[Directory.GetFiles(extractedExcelFilePath)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="638,2200" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="[filePath + &quot;\EngagementAnalyticsLite.xlsm&quot;]">
+    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="638,2331" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" WorkbookPath="[filePath + &quot;\EngagementAnalyticsLite.xlsm&quot;]">
       <ui:ExcelApplicationScope.Body>
         <ActivityAction x:TypeArguments="ui:WorkbookApplication">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Writing To Template" sap:VirtualizedContainerService.HintSize="604,2091" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Writing To Template" sap:VirtualizedContainerService.HintSize="604,2222" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Default="Analytics Report #1 CHEMMAT 121" Name="sheet" />
               <Variable x:TypeArguments="x:String" Default="A2" Name="startingCell" />
@@ -106,13 +106,13 @@
                 <InArgument x:TypeArguments="x:Int32">[sheets.Where(function (s) s.Contains("Analytics Report")).Count()]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Extracted Excel File" sap:VirtualizedContainerService.HintSize="562,1710" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
+            <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each Extracted Excel File" sap:VirtualizedContainerService.HintSize="562,1841" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[files]">
               <ui:ForEach.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="file" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Copy and Input Data" sap:VirtualizedContainerService.HintSize="526,1577" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <Sequence DisplayName="Copy and Input Data" sap:VirtualizedContainerService.HintSize="526,1708" sap2010:WorkflowViewState.IdRef="Sequence_5">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="fileName" />
                       <Variable x:TypeArguments="sd:DataTable" Name="tempDt" />
@@ -167,7 +167,7 @@
                       </Assign.Value>
                     </Assign>
                     <ui:ExcelCopySheet DestinationFilePath="{x:Null}" DestinationSheetName="[sheet]" DisplayName="Copy Base Sheet" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="ExcelCopySheet_1" SheetName="[sheets(3)]" />
-                    <ui:ExcelReadRange AddHeaders="False" DataTable="[copyDt]" DisplayName="Get Copied Sheet Data" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="[sheet]">
+                    <ui:ExcelReadRange AddHeaders="False" DataTable="[copyDt]" DisplayName="Get Copied Sheet Data" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_3" SheetName="[sheet]">
                       <ui:ExcelReadRange.Range>
                         <InArgument x:TypeArguments="x:String">
                           <Literal x:TypeArguments="x:String" Value="" />
@@ -204,6 +204,7 @@
                         </Assign>
                       </Sequence>
                     </While>
+                    <ui:LogMessage DisplayName="Log: csv added to output file" sap:VirtualizedContainerService.HintSize="484,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[fileName + &quot;csv file has been compiled into EngagementAnalyticsLite.xlsm at &quot; + System.DateTime.Now.ToString]" />
                     <Assign DisplayName="Increment report count" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_9">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
@@ -220,6 +221,5 @@
         </ActivityAction>
       </ui:ExcelApplicationScope.Body>
     </ui:ExcelApplicationScope>
-    <ui:Delete ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="638,22" sap2010:WorkflowViewState.IdRef="Delete_1" Path="[extractedExcelFilePath]" />
   </Sequence>
 </Activity>
